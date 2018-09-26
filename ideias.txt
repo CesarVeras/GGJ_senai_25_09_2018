@@ -2,8 +2,11 @@ TODO_list
     * Definir tema do jogo
     * Entregar até 02/10 23:59
 
-Transmissão
-
+Transmissão 
+    - Código morse
+        Errar toma dano
+        Guerra
+        Explosões
 Onda
 
 Rituais
