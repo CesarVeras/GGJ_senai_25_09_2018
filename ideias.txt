@@ -10,6 +10,8 @@ Transmissão
 
         Precisamos de:
             Vetor de Frases
+            Definir fases e fluxo de conversa
+            Salvar progresso em inteiro no playerPrefs
             
         Temos:
             Vida
