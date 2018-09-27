@@ -7,6 +7,18 @@ Transmissão
         Errar toma dano
         Guerra
         Explosões
+
+        Precisamos de:
+            Vetor de Frases
+            
+        Temos:
+            Vida
+            Acerto
+            Erro
+            Tradução
+            Recarregar cena
+
+        
 Onda
 
 Rituais

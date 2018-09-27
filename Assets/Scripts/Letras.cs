@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SoundGenerator))]
 public class Letras : MonoBehaviour
 {
     public string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
@@ -27,23 +28,29 @@ public class Letras : MonoBehaviour
 
     public Text textoEntrada;
 
+    private SoundGenerator sg;
+
     // Use this for initialization
     void Start()
     {
         textoTemp = "";
         tempoInicio = Time.time;
+        sg = GetComponent<SoundGenerator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Time.time - tempoFim >= tempoPausa && !pausado)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            textoEntrada.text += ' ';
-            pausado = true;
-        }*/
+            ComecarEscrever();
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            PararEscrever();
+        }
 
-        if ((textoTemp.Length == 4 || Time.time - tempoFim >= tempoLetra)) //&& !pausado)
+        if ((textoTemp.Length == 8 || Time.time - tempoFim >= tempoLetra) && !escrevendo)
         {
             palavras.Add(textoTemp);
             textoEntrada.text += Traduzir(textoTemp);
@@ -60,6 +67,7 @@ public class Letras : MonoBehaviour
     {
         tempoInicio = Time.time;
         escrevendo = true;
+        sg.useSinusAudioWave = true;
     }
 
     public void PararEscrever()
@@ -76,6 +84,7 @@ public class Letras : MonoBehaviour
         tempoFim = Time.time;
         pausado = false;
         escrevendo = false;
+        sg.useSinusAudioWave = false;
     }
 
     public string Traduzir(string palavra)

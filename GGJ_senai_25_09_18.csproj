@@ -236,6 +236,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Letras.cs" />
+    <Compile Include="Assets\Scripts\Light.cs" />
+    <Compile Include="Assets\Scripts\MorseWrite.cs" />
+    <Compile Include="Assets\Scripts\SoundGenerator.cs" />
+    <Compile Include="Assets\Scripts\Waves\SawWave.cs" />
+    <Compile Include="Assets\Scripts\Waves\SinusWave.cs" />
+    <Compile Include="Assets\Scripts\Waves\SquareWave.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
