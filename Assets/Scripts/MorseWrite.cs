@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SoundGenerator))]
 public class MorseWrite : MonoBehaviour
 {
 
@@ -16,11 +17,14 @@ public class MorseWrite : MonoBehaviour
     public string resposta = "rexi tegui manda um doguinho";
     public Image imgVida;
 
+    SoundGenerator sg;
+
     // Use this for initialization
     void Start()
     {
         StartCoroutine(MorsePalavra(resposta));
         vidaAtual = vida;
+        sg = GetComponent<SoundGenerator>();
     }
 
     // Update is called once per frame
@@ -49,7 +53,7 @@ public class MorseWrite : MonoBehaviour
                 }
             } else
             {
-                string input = Input.inputString;
+                string input = Input.inputString.ToUpper();
                 print(input);
                 texto.text += input;
             }
@@ -80,6 +84,7 @@ public class MorseWrite : MonoBehaviour
                 foreach (char ch in m)
                 {
                     luz.active = true;
+                    sg.useSinusAudioWave = true;
                     float delay;
                     if (ch == '-')
                     {
@@ -90,6 +95,7 @@ public class MorseWrite : MonoBehaviour
                     }
                     yield return new WaitForSeconds(delay);
                     luz.active = false;
+                    sg.useSinusAudioWave = false;
                     yield return new WaitForSeconds(0.2f);
                 }
             }
