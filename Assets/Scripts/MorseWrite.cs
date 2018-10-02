@@ -14,7 +14,7 @@ public class MorseWrite : MonoBehaviour
     public Light luz;
     public float vida = 5;
     public float vidaAtual;
-    public string resposta = "rexi tegui manda um doguinho";
+    public string resposta = "cadeira";
     public Image imgVida;
 
     SoundGenerator sg;
@@ -96,7 +96,7 @@ public class MorseWrite : MonoBehaviour
                     yield return new WaitForSeconds(0.2f);
                 }
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.6f);
         }
     }
 }
