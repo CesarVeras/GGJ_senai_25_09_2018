@@ -30,7 +30,10 @@ public class MorseWrite : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
-                texto.text = texto.text.Substring(0, texto.text.Length - 1);
+                if (texto.text.Length > 0)
+                {
+                    texto.text = texto.text.Substring(0, texto.text.Length - 1);
+                }
             }
             else if(Input.GetKeyDown(KeyCode.Return))
             {
