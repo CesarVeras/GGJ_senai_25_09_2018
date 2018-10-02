@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Traduzir.unity
     guid: 7134bdd7cf8c40a4cba11f28e97e9269
+  - enabled: 1
+    path: Assets/Scenes/Escrever.unity
+    guid: 28400860d511d824e9be16afe3e0d334
