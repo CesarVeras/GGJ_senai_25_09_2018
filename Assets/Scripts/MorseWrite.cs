@@ -46,7 +46,7 @@ public class MorseWrite : MonoBehaviour
                 }
             } else
             {
-                string input = Input.inputString;
+                string input = Input.inputString.ToUpper();
                 print(input);
                 texto.text += input;
             }
