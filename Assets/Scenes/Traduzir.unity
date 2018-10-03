@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755133b881ce68745ad99ed426ae2cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runMorse: 0
   letras: 6100620063006400650066006700680069006a006b006c006d006e006f0070007100720073007400750076007700780079007a00
   morse:
   - .-

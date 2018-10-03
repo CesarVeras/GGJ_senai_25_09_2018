@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SoundGenerator))]
 public class MorseWrite : MonoBehaviour
 {
-
+    public bool runMorse = true;
     public char[] letras = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     public string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
     public Text texto;
@@ -22,7 +22,8 @@ public class MorseWrite : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(MorsePalavra(resposta));
+        if(runMorse)
+            StartCoroutine(MorsePalavra(resposta));
         vidaAtual = vida;
         sg = GetComponent<SoundGenerator>();
     }

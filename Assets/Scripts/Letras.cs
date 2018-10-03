@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(SoundGenerator))]
-public class Letras : MonoBehaviour
-{
+public class Letras : MonoBehaviour {
     public string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
     public string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
     public List<string> palavras;
@@ -31,54 +30,51 @@ public class Letras : MonoBehaviour
     private SoundGenerator sg;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         textoTemp = "";
         tempoInicio = Time.time;
         sg = GetComponent<SoundGenerator>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
+    void Update() {
+        if (Input.touchCount > 0) {
+            TouchPhase phase = Input.GetTouch(0).phase;
+            if (phase == TouchPhase.Began) {
+                ComecarEscrever();
+            } else if (phase == TouchPhase.Ended) {
+                PararEscrever();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
             ComecarEscrever();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
+        if (Input.GetKeyUp(KeyCode.Space)) {
             PararEscrever();
         }
 
-        if ((textoTemp.Length == 8 || Time.time - tempoFim >= tempoLetra) && !escrevendo)
-        {
+        if ((textoTemp.Length == 8 || Time.time - tempoFim >= tempoLetra) && !escrevendo) {
             palavras.Add(textoTemp);
             textoEntrada.text += Traduzir(textoTemp);
             textoTemp = "";
-            if (Time.time - tempoFim >= tempoPalavra && !pausado && !escrevendo)
-            {
+            if (Time.time - tempoFim >= tempoPalavra && !pausado && !escrevendo) {
                 textoEntrada.text += " ";
                 pausado = true;
             }
         }
     }
 
-    public void ComecarEscrever()
-    {
+    public void ComecarEscrever() {
         tempoInicio = Time.time;
         escrevendo = true;
         sg.useSinusAudioWave = true;
     }
 
-    public void PararEscrever()
-    {
+    public void PararEscrever() {
 
-        if (Time.time - tempoInicio < 0.3f)
-        {
+        if (Time.time - tempoInicio < 0.3f) {
             textoTemp += '.';
-        }
-        else
-        {
+        } else {
             textoTemp += '-';
         }
         tempoFim = Time.time;
@@ -87,12 +83,9 @@ public class Letras : MonoBehaviour
         sg.useSinusAudioWave = false;
     }
 
-    public string Traduzir(string palavra)
-    {
-        for (int i = 0; i < morse.Length; i++)
-        {
-            if (palavra == morse[i])
-            {
+    public string Traduzir(string palavra) {
+        for (int i = 0; i < morse.Length; i++) {
+            if (palavra == morse[i]) {
                 return letras[i];
             }
         }
