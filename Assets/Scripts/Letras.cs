@@ -12,7 +12,6 @@ public class Letras : MonoBehaviour {
 
     private bool pausado = false;
     private bool escrevendo = false;
-    private bool escrito = false;
 
     private bool esperandoLetra = true;
     private bool esperandoPalavra = false;
@@ -55,9 +54,7 @@ public class Letras : MonoBehaviour {
         if(Input.GetKey(KeyCode.Backspace)) {
             Recomecar();
         }
-        if ((Time.time - tempoFim >= tempoLetra) && !escrevendo && !escrito) {
-            escrito = true;
-            print(textoTemp);
+        if ((Time.time - tempoFim >= tempoLetra) && !escrevendo) {
             textoEntrada.text += Traduzir(textoTemp).ToUpper();
             textoTemp = "";
             if (Time.time - tempoFim >= tempoPalavra && !pausado && !escrevendo) {
@@ -73,7 +70,6 @@ public class Letras : MonoBehaviour {
 
     public void ComecarEscrever() {
         tempoInicio = Time.time;
-        escrito = false;
         escrevendo = true;
         sg.useSinusAudioWave = true;
     }
