@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(SoundGenerator))]
 public class Letras : MonoBehaviour {
-    public string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-    public string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
-    public List<string> palavras;
-
+    private string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+    private string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", "-----" };
+    
     public string textoTemp;
 
-    public bool pausado = false;
-    public bool escrevendo = false;
+    private bool pausado = false;
+    private bool escrevendo = false;
+    private bool escrito = false;
 
-    public bool esperandoLetra = true;
-    public bool esperandoPalavra = false;
-    public bool esperandoFrase = false;
+    private bool esperandoLetra = true;
+    private bool esperandoPalavra = false;
+    private bool esperandoFrase = false;
 
     public float tempoInicio;
     public float tempoDecorrido;
@@ -52,10 +52,13 @@ public class Letras : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space)) {
             PararEscrever();
         }
-
-        if ((textoTemp.Length == 8 || Time.time - tempoFim >= tempoLetra) && !escrevendo) {
-            palavras.Add(textoTemp);
-            textoEntrada.text += Traduzir(textoTemp);
+        if(Input.GetKey(KeyCode.Backspace)) {
+            Recomecar();
+        }
+        if ((Time.time - tempoFim >= tempoLetra) && !escrevendo && !escrito) {
+            escrito = true;
+            print(textoTemp);
+            textoEntrada.text += Traduzir(textoTemp).ToUpper();
             textoTemp = "";
             if (Time.time - tempoFim >= tempoPalavra && !pausado && !escrevendo) {
                 textoEntrada.text += " ";
@@ -64,8 +67,13 @@ public class Letras : MonoBehaviour {
         }
     }
 
+    public void Recomecar() {
+        textoEntrada.text = "";
+    }
+
     public void ComecarEscrever() {
         tempoInicio = Time.time;
+        escrito = false;
         escrevendo = true;
         sg.useSinusAudioWave = true;
     }
