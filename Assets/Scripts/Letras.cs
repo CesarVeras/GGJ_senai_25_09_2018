@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(SoundGenerator))]
 public class Letras : MonoBehaviour {
-    private string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-    private string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", "-----" };
+    private string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "?", "-" };
+    private string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.", "-----", "---.", "----", "..--" };
     
     public string textoTemp;
 
     private bool pausado = false;
     private bool escrevendo = false;
-    private bool escrito = false;
 
     private bool esperandoLetra = true;
     private bool esperandoPalavra = false;
@@ -55,9 +54,7 @@ public class Letras : MonoBehaviour {
         if(Input.GetKey(KeyCode.Backspace)) {
             Recomecar();
         }
-        if ((Time.time - tempoFim >= tempoLetra) && !escrevendo && !escrito) {
-            escrito = true;
-            print(textoTemp);
+        if ((Time.time - tempoFim >= tempoLetra) && !escrevendo) {
             textoEntrada.text += Traduzir(textoTemp).ToUpper();
             textoTemp = "";
             if (Time.time - tempoFim >= tempoPalavra && !pausado && !escrevendo) {
@@ -73,7 +70,6 @@ public class Letras : MonoBehaviour {
 
     public void ComecarEscrever() {
         tempoInicio = Time.time;
-        escrito = false;
         escrevendo = true;
         sg.useSinusAudioWave = true;
     }

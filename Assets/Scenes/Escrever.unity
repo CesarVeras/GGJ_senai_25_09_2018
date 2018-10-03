@@ -466,7 +466,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -511,67 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bb4c666b55e50418ff89419df65b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letras:
-  - a
-  - b
-  - c
-  - d
-  - e
-  - f
-  - g
-  - h
-  - i
-  - j
-  - k
-  - l
-  - m
-  - n
-  - o
-  - p
-  - q
-  - r
-  - s
-  - t
-  - u
-  - v
-  - w
-  - x
-  - y
-  - z
-  morse:
-  - .-
-  - -...
-  - -.-.
-  - -..
-  - .
-  - ..-.
-  - --.
-  - '....'
-  - ..
-  - .---
-  - -.-
-  - .-..
-  - --
-  - -.
-  - '---'
-  - .--.
-  - --.-
-  - .-.
-  - '...'
-  - '-'
-  - ..-
-  - '...-'
-  - .--
-  - -..-
-  - -.--
-  - --..
-  palavras: []
   textoTemp: 
-  pausado: 0
-  escrevendo: 0
-  esperandoLetra: 1
-  esperandoPalavra: 0
-  esperandoFrase: 0
   tempoInicio: 0
   tempoDecorrido: 0
   tempoFim: 0
